@@ -2,17 +2,14 @@ from keras import layers
 from keras import models
 from keras.utils import to_categorical
 from keras.datasets import mnist
-import matplotlib.pyplot as plt
 
 (train_images, train_labels), (test_images, test_labels) = mnist.load_data()
 
-print(f'Train images shape {train_images.shape}')
+print('Train images shape {0}'.format(train_images.shape))
 print('Total traning images {0}'.format(len(train_labels)))
-print(f'Test images shape {test_images.shape}')
+print('Test images shape {0}'.format(test_images.shape))
 print('Total test images {0}'.format(len(test_labels)))
 
-plt.imshow(train_images[2], cmap=plt.cm.binary)
-plt.show()
 
 train_images = train_images.reshape((60000, 28 ,28, 1)) # creating vectors of (28, 28, 1) matrix, 1 is color channel
 train_images = train_images.astype('float32')/255
@@ -49,4 +46,4 @@ print(model.summary())
 model.fit(train_images, train_labels, epochs = 5, batch_size=64)
 
 test_loss, test_acc = model.evaluate(test_images, test_labels)
-print(f'Test Accuracy, {test_acc}')
+print('Test Accuracy, {0}'.format(test_acc))
